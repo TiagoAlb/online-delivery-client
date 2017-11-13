@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import ProdutoPagina from './produto/ProdutoPagina';
+import EntregadorPagina from './entregador/EntregadorPagina';
 import Principal from './Principal';
 
 class App extends Component {

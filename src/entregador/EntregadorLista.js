@@ -13,7 +13,7 @@ import Table, {
 
 
 
-export default class ProdutoLista extends React.Component {
+export default class EntregadorLista extends React.Component {
 
     setPagina(numero) {
         this.props.mudaPagina(numero);
@@ -32,17 +32,17 @@ export default class ProdutoLista extends React.Component {
         return botoes;
     }
 
-    botoesProduto(produto) {
+    botoesEntregador(entregador) {
         let botoes = [];
         if (this.props.editar) {
             let botao = <IconButton onClick={(evento) => {
-                                this.props.editar(produto);
+                                this.props.editar(entregador);
             }} color="primary">
         <Icon>create</Icon>
       </IconButton>
                             /*
                             <button onClick={(evento) => {
-                                this.props.editar(produto);
+                                this.props.editar(entregador);
             }}>
                 Editar</button>;*/;
                 botoes.push(botao);
@@ -51,14 +51,14 @@ export default class ProdutoLista extends React.Component {
         if (this.props.apagar) {
             let botao = 
                     <IconButton onClick={(evento) => {
-                                this.props.apagar(produto);
+                                this.props.apagar(entregador);
             }} color="accent">
         <Icon>delete</Icon>
       </IconButton>;
                     /*            
                                 
                                 <button onClick={(evento) => {
-                                this.props.apagar(produto);
+                                this.props.apagar(entregador);
             }}>
                 Apagar</button>;*/
                 botoes.push(botao);
@@ -79,12 +79,12 @@ export default class ProdutoLista extends React.Component {
         </TableRow>
     </TableHead>
     <TableBody>
-        {this.props.pagina.content.map((produto) => {
-                                return <TableRow hover="true" key={produto.id}>
-                            <TableCell>{produto.nome}</TableCell>
-                            <TableCell numeric="true">{produto.valor}</TableCell>
+        {this.props.pagina.content.map((entregador) => {
+                                return <TableRow hover="true" key={entregador.id}>
+                            <TableCell>{entregador.nome}</TableCell>
+                            <TableCell numeric="true">{entregador.valor}</TableCell>
                             <TableCell>
-                                {this.botoesProduto(produto)}</TableCell>
+                                {this.botoesProduto(entregador)}</TableCell>
                         </TableRow>;
         })}        
     </TableBody>

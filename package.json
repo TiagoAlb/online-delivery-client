@@ -16,7 +16,7 @@
     "eject": "react-scripts eject"
   },
   "proxy": {
-    "/produtos": {
+    "/entregadores": {
       "target": "http://localhost:8080/",
       "ws": true
     }

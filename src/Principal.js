@@ -9,8 +9,7 @@ import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
 import Divider from 'material-ui/Divider';
 import Icon from 'material-ui/Icon';
 
-import ProdutoPagina from './produto/ProdutoPagina';
-import Carrinho from './carrinho/Carrinho';
+import EntregadorPagina from './entregador/EntregadorPagina';
 import Home from './home/Home';
 
 import {
@@ -83,40 +82,22 @@ function Principal(props) {
         >
           <div className={classes.drawerHeader} />
 <List>
-<Link to="produto"  style={{ textDecoration: 'none' }}>
+<Link to="entregador"  style={{ textDecoration: 'none' }}>
         <ListItem button>
         
           <ListItemIcon>
             <Icon>note_add</Icon>
           </ListItemIcon>
-          <ListItemText primary="Produtos" />
+          <ListItemText primary="Cadastro Entregador" />
 
         </ListItem>
                   </Link>
-        <Link to="carrinho" style={{ textDecoration: 'none' }}>
-            <ListItem button>
-        
-          <ListItemIcon>
-            <Icon>shopping_cart</Icon>
-          </ListItemIcon>
-          <ListItemText primary="Carrinho" />
-          
-        </ListItem>
-        </Link>
       </List>
-      <Divider />
-      <List>
-        <ListItem button>
-          <ListItemText primary="Sair" />
-        </ListItem>
-      </List>
-
 
         </Drawer>
         <main className={classes.content}>
         <Route exact path="/" component={Home}/>
-        <Route path="/produto" component={ProdutoPagina}/>
-        <Route path="/carrinho" component={Carrinho}/>
+        <Route path="/entregador" component={EntregadorPagina}/>
         </main>
       </div>
     </div>
