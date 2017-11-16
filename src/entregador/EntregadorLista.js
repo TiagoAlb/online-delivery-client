@@ -84,7 +84,7 @@ export default class EntregadorLista extends React.Component {
                             <TableCell>{entregador.nome}</TableCell>
                             <TableCell numeric="true">{entregador.valor}</TableCell>
                             <TableCell>
-                                {this.botoesProduto(entregador)}</TableCell>
+                                {this.botoesEntregador(entregador)}</TableCell>
                         </TableRow>;
         })}        
     </TableBody>

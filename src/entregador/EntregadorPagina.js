@@ -79,7 +79,7 @@ export default class EntregadorPagina extends React.Component {
             />
             <EntregadorItem 
                 cancelar={()=>{this.setState({exibirEntregadorItem:false});}}
-                abrir={this.state.exibirProdutoItem}
+                abrir={this.state.exibirEntregadorItem}
                 inserir ={(entregador)=>{ 
                     this.entregadorServico.inserir(entregador, 
                             (item)=>{

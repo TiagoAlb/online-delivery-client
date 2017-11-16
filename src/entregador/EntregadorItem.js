@@ -150,7 +150,7 @@ export default class EntregadorItem extends React.Component {
               Confirmar
             </Button>
           </DialogActions>
-            </Dialog >;
+            </Dialog>;
             
         }
 } 
