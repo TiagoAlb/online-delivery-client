@@ -5,34 +5,34 @@
  */
 
 import React from 'react';
-import EntregadorServico from './EntregadorServico';
-import EntregadorLista from './EntregadorLista';
-import EntregadorItem from './EntregadorItem';
+import UsuarioServico from './UsuarioServico';
+import UsuarioLista from './UsuarioLista';
+import UsuarioItem from './UsuarioItem';
 import Paper from "material-ui/Paper";
 import Grid from "material-ui/Grid";
 import Button from "material-ui/Button";
 import Icon from 'material-ui/Icon';
 
-export default class EntregadorPagina extends React.Component {
+export default class UsuarioPagina extends React.Component {
 
     constructor(props) {
         super(props);
 
         this.state = {
             pagina: {},
-            exibirEntregadorItem:false,
-            entregador:{nome:"teste"}
+            exibirUsuarioItem:false,
+            usuario:{nome:"teste"}
         }
 
-        this.entregadorServico = new EntregadorServico();
+        this.usuarioServico = new UsuarioServico();
         this.mudarPagina(0);
 
     }
 
     novoItem(){
         this.setState({
-            exibirEntregadorItem:true,
-            entregador:{}
+            exibirUsuarioItem:true,
+            usuario:{}
         });
     }
 
@@ -44,7 +44,7 @@ export default class EntregadorPagina extends React.Component {
 
     mudarPagina(numero) {
         this.paginaAtual=numero;
-        this.entregadorServico.listarPaginado(numero,
+        this.usuarioServico.listarPaginado(numero,
                 (resultado) => {
             console.log(resultado);
             this.setPagina(resultado);
@@ -63,9 +63,9 @@ export default class EntregadorPagina extends React.Component {
             <Grid item sm={12} md={10} >
             <Paper style={{padding:10}}>
             
-            <EntregadorLista
-            apagar={(entregador) => {
-                this.entregadorServico.apagar(entregador.id,
+            <UsuarioLista
+            apagar={(usuario) => {
+                this.usuarioServico.apagar(usuario.id,
                 ()=>{
                     alert("Apagado com sucesso!!!");
                     this.mudarPagina(this.paginaAtual);
@@ -73,18 +73,18 @@ export default class EntregadorPagina extends React.Component {
                 },
                 (erro)=>console.log(erro));
                 }}
-            editar={(entregador) => {this.setState({exibirEntregadorItem:true, entregador:entregador});}  }
+            editar={(usuario) => {this.setState({exibirUsuarioItem:true, usuario:usuario});}  }
             mudaPagina={(numero) => this.mudarPagina(numero)}
             pagina={this.state.pagina} 
             />
-            <EntregadorItem 
-                cancelar={()=>{this.setState({exibirEntregadorItem:false});}}
-                abrir={this.state.exibirEntregadorItem}
-                inserir ={(entregador)=>{ 
-                    this.entregadorServico.inserir(entregador, 
+            <UsuarioItem 
+                cancelar={()=>{this.setState({exibirUsuarioItem:false});}}
+                abrir={this.state.exibirUsuarioItem}
+                inserir ={(usuario)=>{ 
+                    this.usuarioServico.inserir(usuario, 
                             (item)=>{
-                                alert("Entregador cadastrado com sucesso!");
-                                this.setState({exibirEntregadorItem:false});
+                                alert("Usuario cadastrado com sucesso!");
+                                this.setState({exibirUsuarioItem:false});
                                 this.mudarPagina(this.paginaAtual);
                             },
                             (erro)=>{
@@ -93,11 +93,11 @@ export default class EntregadorPagina extends React.Component {
                                 }
                             );
                     }}
-                editar = {(id,entregador)=>{ 
-                    this.entregadorServico.editar(id, entregador, 
+                editar = {(id,usuario)=>{ 
+                    this.usuarioServico.editar(id, usuario, 
                             (item)=>{
-                                alert("Entregador editado com sucesso!");
-                                this.setState({exibirEntregadorItem:false});
+                                alert("Usuario editado com sucesso!");
+                                this.setState({exibirUsuarioItem:false});
                                 this.mudarPagina(this.paginaAtual);
                             },
                             (erro)=>{
@@ -106,7 +106,7 @@ export default class EntregadorPagina extends React.Component {
                                 }
                             );
                     }}
-                entregador={this.state.entregador} />
+                usuario={this.state.usuario} />
             <Button raised color="primary" onClick={(evento)=>this.novoItem()} >
         Cadastre-se
       </Button>

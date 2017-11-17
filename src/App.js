@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import EntregadorPagina from './entregador/EntregadorPagina';
 import Principal from './Principal';
 
 class App extends Component {

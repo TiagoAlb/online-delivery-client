@@ -13,7 +13,7 @@ import Table, {
 
 
 
-export default class EntregadorLista extends React.Component {
+export default class UsuarioLista extends React.Component {
 
     setPagina(numero) {
         this.props.mudaPagina(numero);
@@ -32,17 +32,17 @@ export default class EntregadorLista extends React.Component {
         return botoes;
     }
 
-    botoesEntregador(entregador) {
+    botoesUsuario(usuario) {
         let botoes = [];
         if (this.props.editar) {
             let botao = <IconButton onClick={(evento) => {
-                                this.props.editar(entregador);
+                                this.props.editar(usuario);
             }} color="primary">
         <Icon>create</Icon>
       </IconButton>
                             /*
                             <button onClick={(evento) => {
-                                this.props.editar(entregador);
+                                this.props.editar(usuario);
             }}>
                 Editar</button>;*/;
                 botoes.push(botao);
@@ -51,14 +51,14 @@ export default class EntregadorLista extends React.Component {
         if (this.props.apagar) {
             let botao = 
                     <IconButton onClick={(evento) => {
-                                this.props.apagar(entregador);
+                                this.props.apagar(usuario);
             }} color="accent">
         <Icon>delete</Icon>
       </IconButton>;
                     /*            
                                 
                                 <button onClick={(evento) => {
-                                this.props.apagar(entregador);
+                                this.props.apagar(usuario);
             }}>
                 Apagar</button>;*/
                 botoes.push(botao);
@@ -75,18 +75,16 @@ export default class EntregadorLista extends React.Component {
             return <Table >
     <TableHead>
         <TableRow>
-            <TableCell>Nome</TableCell><TableCell>CPF</TableCell><TableCell>Email</TableCell><TableCell>CNH</TableCell>
+            <TableCell>Nome</TableCell><TableCell>Email</TableCell>
         </TableRow>
     </TableHead>
     <TableBody>
-        {this.props.pagina.content.map((entregador) => {
-                                return <TableRow hover="true" key={entregador.id}>
-                            <TableCell>{entregador.nome}</TableCell>
-                            <TableCell>{entregador.cpf}</TableCell>
-                            <TableCell>{entregador.email}</TableCell>
-                            <TableCell>{entregador.cnh}</TableCell>
+        {this.props.pagina.content.map((usuario) => {
+                                return <TableRow hover="true" key={usuario.id}>
+                            <TableCell>{usuario.nome}</TableCell>                     
+                            <TableCell>{usuario.email}</TableCell>              
                             <TableCell>
-                                {this.botoesEntregador(entregador)}</TableCell>
+                                {this.botoesUsuario(usuario)}</TableCell>
                         </TableRow>;
         })}        
     </TableBody>

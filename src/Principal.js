@@ -10,15 +10,13 @@ import Divider from 'material-ui/Divider';
 import Icon from 'material-ui/Icon';
 
 import EntregadorPagina from './entregador/EntregadorPagina';
-import Home from './home/Home';
+import UsuarioPagina from './usuario/UsuarioPagina';
 
 import {
   BrowserRouter as Router,
   Route,
   Link
 } from 'react-router-dom';
-
-
 
 const drawerWidth = 240;
 
@@ -91,13 +89,24 @@ function Principal(props) {
           <ListItemText primary="Cadastro Entregador" />
 
         </ListItem>
-                  </Link>
+        </Link>
+        
+        <Link to="usuario"  style={{ textDecoration: 'none' }}>
+        <ListItem button>
+        
+          <ListItemIcon>
+            <Icon>note_add</Icon>
+          </ListItemIcon>
+          <ListItemText primary="Cadastro Usuario" />
+
+        </ListItem>
+        </Link>
       </List>
 
         </Drawer>
         <main className={classes.content}>
-        <Route exact path="/" component={Home}/>
         <Route path="/entregador" component={EntregadorPagina}/>
+        <Route path="/usuario" component={UsuarioPagina}/>
         </main>
       </div>
     </div>
