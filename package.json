@@ -16,7 +16,7 @@
     "eject": "react-scripts eject"
   },
   "proxy": {
-    "/usuarios": {
+    "/api": {
       "target": "http://localhost:8081/",
       "ws": true
     }

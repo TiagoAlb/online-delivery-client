@@ -8,7 +8,7 @@ import ServicoRest from "../ServicoRest";
 
 export default class EntregadorServico extends  ServicoRest {
         constructor(){
-            super("/entregadores");
+            super("/api/entregadores");
         }
         
 }
