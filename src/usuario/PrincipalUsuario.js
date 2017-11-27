@@ -10,18 +10,17 @@ import Divider from 'material-ui/Divider';
 import Icon from 'material-ui/Icon';
 import IconButton from 'material-ui/IconButton';
 import Button from 'material-ui/Button';
-import Tooltip from 'material-ui/Tooltip';
 
-import EntregadorPagina from './entregador/EntregadorPagina';
-import UsuarioPagina from './usuario/UsuarioPagina';
-import SolicitacaoPagina from './usuario/solicitaentrega/SolicitacaoPagina';
-import PrincipalUsuario from './usuario/PrincipalUsuario';
+import UsuarioPagina from './UsuarioPagina';
+import SolicitacaoPagina from './solicitaentrega/SolicitacaoPagina';
 
 import {
   BrowserRouter as Router,
   Route,
   Link
 } from 'react-router-dom';
+
+const drawerWidth = 240;
 
 const styles = theme => ({
   root: {
@@ -30,10 +29,12 @@ const styles = theme => ({
   appFrame: {
     position: 'relative',
     display: 'flex',
+    width: '100%',
     height: '100%',
   },
   appBar: {
     position: 'absolute',
+    marginLeft: drawerWidth,
     backgroundColor: '#37474F',
   },
   menuButton: {
@@ -53,7 +54,7 @@ const styles = theme => ({
   },
 });
 
-class Principal extends React.Component {
+class PrincipalUsuario extends React.Component {
     
     constructor(props) {
         super(props);
@@ -63,10 +64,8 @@ class Principal extends React.Component {
     handleToggle = () => this.setState({open: !this.state.open});
 
     handleClose = () => this.setState({open: false});
-    
   
   render(){
-      
   const { classes } = this.props;
 
   return (
@@ -77,42 +76,35 @@ class Principal extends React.Component {
           <Toolbar>
           <IconButton className={classes.menuButton} color="contrast" aria-label="Menu" onClick={this.handleToggle}>menu</IconButton>
             <Typography type="title" color="inherit" noWrap>
-              Entregas
+              Teste
             </Typography>
-            <Button color="contrast" style={{left:'78%'}} href="solicitaentrega">Login</Button>
+            <Button color="contrast" style={{left:'78%'}} href="/solicitaentrega">Login</Button>
           </Toolbar>
         </AppBar>
-        <Drawer 
+        <Drawer
           onClick={this.handleClose}
           docked={false}
           open={this.state.open}
           onRequestChange={(open) => this.setState({open})}
-          width={10}
+          width={200}
+
         >
+<List>    
+        <Link to="UsuarioPagina"  style={{ textDecoration: 'none' }}>
+        <ListItem button>
         
-<List>
-<Link to="entregador"  style={{ textDecoration: 'none' }}>
-    
-        <ListItem button>
-            <ListItemIcon>
-                <Icon style={{marginLeft:'auto', marginRight:'auto'}}>motorcycle</Icon>
-            </ListItemIcon>
-        </ListItem>      
-        </Link>
-         
-        <Link to="usuario"  style={{ textDecoration: 'none' }}>
-        <ListItem button>
           <ListItemIcon>
-            <Icon style={{marginLeft:'auto', marginRight:'auto'}}>account_circle</Icon>
+            <Icon>account_circle</Icon>
           </ListItemIcon>
+          <ListItemText primary="Cadastro Usuario" />
+
         </ListItem>
         </Link>
       </List>
 
         </Drawer>
         <main className={classes.content}>
-        <Route path="/entregador" component={EntregadorPagina}/>
-        <Route path="/usuario" component={UsuarioPagina}/>
+        <Route path="./" component={UsuarioPagina}/>
         <Route path="/solicitaentrega" component={SolicitacaoPagina}/>
         </main>
       </div>
@@ -122,8 +114,8 @@ class Principal extends React.Component {
 }
 }
 
-Principal.propTypes = {
+PrincipalUsuario.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Principal);
+export default withStyles(styles)(PrincipalUsuario);
