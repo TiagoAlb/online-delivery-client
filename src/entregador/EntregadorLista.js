@@ -37,7 +37,7 @@ export default class EntregadorLista extends React.Component {
         if (this.props.editar) {
             let botao = <IconButton onClick={(evento) => {
                                 this.props.editar(entregador);
-            }} color="primary">
+            }} style={{color: '#009688'}}>
         <Icon>create</Icon>
       </IconButton>
                             /*
@@ -52,7 +52,7 @@ export default class EntregadorLista extends React.Component {
             let botao = 
                     <IconButton onClick={(evento) => {
                                 this.props.apagar(entregador);
-            }} color="accent">
+            }} style={{color: '#616161'}}>
         <Icon>delete</Icon>
       </IconButton>;
                     /*            
