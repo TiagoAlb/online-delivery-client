@@ -1,7 +1,7 @@
 import React from 'react';
-//import UsuarioServico from './UsuarioServico';
-//import UsuarioLista from './UsuarioLista';
-//import UsuarioItem from './UsuarioItem';
+import SolicitacaoServico from './SolicitacaoServico';
+import SolicitacaoLista from './SolicitacaoLista';
+import SolicitacaoItem from './SolicitacaoItem';
 import Paper from "material-ui/Paper";
 import Grid from "material-ui/Grid";
 import Button from "material-ui/Button";
@@ -9,13 +9,6 @@ import Icon from 'material-ui/Icon';
 
 export default class SolicitacaoPagina extends React.Component {
         
-        render(){
-        return(
-        
-        <h1>RealizarSolicitacao</h1>
-);
-}     
-/*
         constructor(props) {
         super(props);
 
@@ -78,7 +71,7 @@ export default class SolicitacaoPagina extends React.Component {
             mudaPagina={(numero) => this.mudarPagina(numero)}
             pagina={this.state.pagina} 
             />
-            <USolicitacaoItem 
+            <SolicitacaoItem 
                 cancelar={()=>{this.setState({exibirSolicitacaoItem:false});}}
                 abrir={this.state.exibirSolicitacaoItem}
                 inserir ={(solicitacao)=>{ 
@@ -116,5 +109,4 @@ export default class SolicitacaoPagina extends React.Component {
             </Grid>;
 
     }
-   */
 }
