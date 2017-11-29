@@ -11,11 +11,12 @@ import Icon from 'material-ui/Icon';
 import IconButton from 'material-ui/IconButton';
 import Button from 'material-ui/Button';
 import Tooltip from 'material-ui/Tooltip';
+import TextField from 'material-ui/TextField';
 
 import EntregadorPagina from './entregador/EntregadorPagina';
 import UsuarioPagina from './usuario/UsuarioPagina';
-import SolicitacaoPagina from './usuario/solicitaentrega/SolicitacaoPagina';
-import PrincipalUsuario from './usuario/PrincipalUsuario';
+import SolicitacaoPagina from './solicitaentrega/SolicitacaoPagina';
+//import PrincipalUsuario from './usuario/PrincipalUsuario';
 
 import {
   BrowserRouter as Router,
@@ -78,7 +79,7 @@ class Principal extends React.Component {
           <IconButton className={classes.menuButton} color="contrast" aria-label="Menu" onClick={this.handleToggle}>menu</IconButton>
             <Typography type="title" color="inherit" noWrap>
               Entregas
-            </Typography>
+            </Typography> 
             <Button color="contrast" style={{left:'78%'}} href="solicitaentrega">Login</Button>
           </Toolbar>
         </AppBar>
@@ -92,7 +93,6 @@ class Principal extends React.Component {
         
 <List>
 <Link to="entregador"  style={{ textDecoration: 'none' }}>
-    
         <ListItem button>
             <ListItemIcon>
                 <Icon style={{marginLeft:'auto', marginRight:'auto'}}>motorcycle</Icon>

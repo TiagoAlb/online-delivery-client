@@ -5,3 +5,11 @@
  */
 
 
+import ServicoRest from "../ServicoRest";
+
+export default class SolicitacaoServico extends  ServicoRest {
+        constructor(){
+            super("/api/solicitacao");
+        }
+        
+}
