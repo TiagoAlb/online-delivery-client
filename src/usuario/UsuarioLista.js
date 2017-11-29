@@ -37,7 +37,7 @@ export default class UsuarioLista extends React.Component {
         if (this.props.editar) {
             let botao = <IconButton onClick={(evento) => {
                                 this.props.editar(usuario);
-            }} style={{color: '#009688'}}>
+            }} color="primary">
         <Icon>create</Icon>
       </IconButton>
                             /*
@@ -52,7 +52,7 @@ export default class UsuarioLista extends React.Component {
             let botao = 
                     <IconButton onClick={(evento) => {
                                 this.props.apagar(usuario);
-            }} style={{color: '#616161'}}>
+            }} color="accent">
         <Icon>delete</Icon>
       </IconButton>;
                     /*            
