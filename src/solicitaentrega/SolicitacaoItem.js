@@ -13,12 +13,13 @@ import Dialog, {
 } from 'material-ui/Dialog';
 import Button  from 'material-ui/Button';
 import TextField from 'material-ui/TextField';
-import distancia_maps from './distancia_maps';
+
 
 export default class SolicitacaoItem extends React.Component {
         
         constructor(props){
             super(props);
+            console.log(window.google.maps);
             this.state={
                 solicitacao:this.props.solicitacao
             }
@@ -32,37 +33,44 @@ export default class SolicitacaoItem extends React.Component {
         
         realizaCalculo(endereco){
             
-        var distance = require('./distancia_maps.js');
-
-var origins = ['San Francisco CA', '40.7421,-73.9914'];
-var destinations = ['New York NY', 'Montreal', '41.8337329,-87.7321554', 'Honolulu'];
-
-distance.key('AIzaSyAcxRxdo4j1s2JtPpESnkaiTyEo3mFsMoA');
-distance.units('imperial');
-
-distance.matrix(origins, destinations, function (err, distances) {
-
-    if (err) {
-        return console.log(err);
-    }
-    if(!distances) {
-        return console.log('no distances');
-    }
-    if (distances.status == 'OK') {
-        for (var i=0; i < origins.length; i++) {
-            for (var j = 0; j < destinations.length; j++) {
-                var origin = distances.origin_addresses[i];
-                var destination = distances.destination_addresses[j];
-                if (distances.rows[0].elements[j].status == 'OK') {
-                    var distance = distances.rows[i].elements[j].distance.text;
-                    console.log('Distance from ' + origin + ' to ' + destination + ' is ' + distance);
-                } else {
-                    console.log(destination + ' is not reachable by land from ' + origin);
-                }
-            }
+            
+         let service = new window.google.maps.DistanceMatrixService;
+        service.getDistanceMatrix({
+          origins: ["Greenwich, England"],
+          destinations: ['Stockholm, Sweden'],
+          travelMode: 'DRIVING',
+          unitSystem: window.google.maps.UnitSystem.METRIC,
+          avoidHighways: false,
+          avoidTolls: false
+        }, function(response, status) {
+          if (status !== 'OK') {
+            alert('Error was: ' + status);
+          } else {
+            console.log(response);
+            console.log(response.rows[0].elements[0].distance.text);
+            console.log(response.rows[0].elements[0].duration.text);
         }
-    }
-});
+            
+    });
+            
+           /* 
+        
+          fetch('https://maps.googleapis.com/maps/api/distancematrix/json?origins=Porto+Alegre+BR&destinations=91790020+BR&mode=car&language=pt-BR&key=AIzaSyAcxRxdo4j1s2JtPpESnkaiTyEo3mFsMoA',{
+                method: 'get',
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                headers:{
+                'Access-Control-Allow-Origin':'*'
+                },
+               
+            }).then(this._parseJSON)
+         */   
+        }
+        
+        _parseJSON(response) {
+
+      //  response.text().then((dados)=>{console.log(dados); } );
+            //response.json().then((dados)=>{console.log(dados); } );
         }
         
         setEnderecoUsuario(valor){

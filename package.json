@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "debug": "^3.1.0",
+    "google-distance": "^1.0.1",
     "google-distance-matrix": "^1.0.0",
     "material-ui": "^1.0.0-beta.21",
     "qs-google-signature": "^1.2.0",
@@ -21,7 +22,7 @@
   },
   "proxy": {
     "/api": {
-      "target": "http://localhost:8081/",
+      "target": "http://localhost:8080/",
       "ws": true
     }
   }
