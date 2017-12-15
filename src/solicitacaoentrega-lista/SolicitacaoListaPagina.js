@@ -1,31 +1,31 @@
 import React from 'react';
-import SolicitacaoServico from './SolicitacaoServico';
-import SolicitacaoLista from './SolicitacaoLista';
-import SolicitacaoItem from './SolicitacaoItem';
+import SolicitacaoListaServico from './SolicitacaoListaServico';
+import SolicitacaoListaLista from './SolicitacaoListaLista';
+import SolicitacaoListaItem from './SolicitacaoListaItem';
 import Paper from "material-ui/Paper";
 import Grid from "material-ui/Grid";
 import Button from "material-ui/Button";
 import Icon from 'material-ui/Icon';
 
-export default class SolicitacaoPagina extends React.Component {
+export default class SolicitacaoListaPagina extends React.Component {
         
         constructor(props) {
         super(props);
 
         this.state = {
             pagina: {},
-            exibirSolicitacaoItem:false,
+            exibirSolicitacaoListaItem:false,
             solicitacao:{local:"teste"}
         }
 
-        this.solicitacaoServico = new SolicitacaoServico();
+        this.solicitacaoListaServico = new SolicitacaoListaServico();
         this.mudarPagina(0);
 
     }
 
     novoItem(){
         this.setState({
-            exibirSolicitacaoItem:true,
+            exibirSolicitacaoListaItem:true,
             solicitacao:{}
         });
     }
@@ -38,7 +38,7 @@ export default class SolicitacaoPagina extends React.Component {
 
     mudarPagina(numero) {
         this.paginaAtual=numero;
-        this.solicitacaoServico.listarPaginado(numero,
+        this.solicitacaoListaServico.listarPaginado(numero,
                 (resultado) => {
             console.log(resultado);
             this.setPagina(resultado);
@@ -57,9 +57,9 @@ export default class SolicitacaoPagina extends React.Component {
             <Grid item sm={12} md={10} >
             <Paper style={{padding:10}}>
             
-            <SolicitacaoLista
+            <SolicitacaoListaLista
             apagar={(solicitacao) => {
-                this.solicitacaoServico.apagar(solicitacao.id,
+                this.solicitacaoListaServico.apagar(solicitacao.id,
                 ()=>{
                     alert("Apagado com sucesso!!!");
                     this.mudarPagina(this.paginaAtual);
@@ -67,18 +67,18 @@ export default class SolicitacaoPagina extends React.Component {
                 },
                 (erro)=>console.log(erro));
                 }}
-            editar={(solicitacao) => {this.setState({exibirSolicitacaoItem:true, solicitacao:solicitacao});}  }
+            editar={(solicitacao) => {this.setState({exibirSolicitacaoListaItem:true, solicitacao:solicitacao});}  }
             mudaPagina={(numero) => this.mudarPagina(numero)}
             pagina={this.state.pagina} 
             />
-            <SolicitacaoItem 
-                cancelar={()=>{this.setState({exibirSolicitacaoItem:false});}}
-                abrir={this.state.exibirSolicitacaoItem}
+            <SolicitacaoListaItem 
+                cancelar={()=>{this.setState({exibirSolicitacaoListaItem:false});}}
+                abrir={this.state.exibirSolicitacaoListaItem}
                 inserir ={(solicitacao)=>{ 
-                    this.solicitacaoServico.inserir(solicitacao, 
+                    this.solicitacaoListaServico.inserir(solicitacao, 
                             (item)=>{
                                 alert("Solicitacao inserida com sucesso!");
-                                this.setState({exibirSolicitacaoItem:false});
+                                this.setState({exibirSolicitacaoListaItem:false});
                                 this.mudarPagina(this.paginaAtual);
                             },
                             (erro)=>{
@@ -88,10 +88,10 @@ export default class SolicitacaoPagina extends React.Component {
                             );
                     }}
                 editar = {(id,solicitacao)=>{ 
-                    this.solicitacaoServico.editar(id, solicitacao, 
+                    this.solicitacaoListaServico.editar(id, solicitacao, 
                             (item)=>{
                                 alert("Solicitacao editada com sucesso!");
-                                this.setState({exibirSolicitacaoItem:false});
+                                this.setState({exibirSolicitacaoListaItem:false});
                                 this.mudarPagina(this.paginaAtual);
                             },
                             (erro)=>{

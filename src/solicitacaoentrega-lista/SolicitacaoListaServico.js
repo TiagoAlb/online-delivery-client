@@ -7,7 +7,7 @@
 
 import ServicoRest from "../ServicoRest";
 
-export default class SolicitacaoServico extends  ServicoRest {
+export default class SolicitacaoListaServico extends  ServicoRest {
         constructor(){
             super("/api/solicitacao");
         }

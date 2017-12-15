@@ -74,9 +74,7 @@ export default class UsuarioItem extends React.Component {
                         }
                     } else {
                         alert("Preencha todos os campos!");
-                    }
-                        
-            
+                    }   
             
         }
         

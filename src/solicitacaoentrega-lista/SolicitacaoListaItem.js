@@ -15,85 +15,77 @@ import Button  from 'material-ui/Button';
 import TextField from 'material-ui/TextField';
 
 
-export default class SolicitacaoItem extends React.Component {
+export default class SolicitacaoListaItem extends React.Component {
         
         constructor(props){
+            
+            
             super(props);
             console.log(window.google.maps);
             this.state={
                 solicitacao:this.props.solicitacao
             }
-            
+     
         }
+        
+        
         
         componentWillReceiveProps(proximoEstado){
             this.setState({solicitacao:proximoEstado.solicitacao});
             
         }
-        
-        realizaCalculo(endereco){
-            
-            
-         let service = new window.google.maps.DistanceMatrixService;
-        service.getDistanceMatrix({
+       
+        realizaCalculo(){
+         var resposta;
+         var service = new window.google.maps.DistanceMatrixService;
+         service.getDistanceMatrix({
           origins: ["Greenwich, England"],
           destinations: ['Stockholm, Sweden'],
           travelMode: 'DRIVING',
           unitSystem: window.google.maps.UnitSystem.METRIC,
           avoidHighways: false,
           avoidTolls: false
-        }, function(response, status) {
+        }, (response, status) => {
+            
           if (status !== 'OK') {
             alert('Error was: ' + status);
           } else {
-            console.log(response);
-            console.log(response.rows[0].elements[0].distance.text);
-            console.log(response.rows[0].elements[0].duration.text);
-        }
-            
-    });
-            
-           /* 
-        
-          fetch('https://maps.googleapis.com/maps/api/distancematrix/json?origins=Porto+Alegre+BR&destinations=91790020+BR&mode=car&language=pt-BR&key=AIzaSyAcxRxdo4j1s2JtPpESnkaiTyEo3mFsMoA',{
-                method: 'get',
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                headers:{
-                'Access-Control-Allow-Origin':'*'
-                },
-               
-            }).then(this._parseJSON)
-         */   
-        }
-        
-        _parseJSON(response) {
-
-      //  response.text().then((dados)=>{console.log(dados); } );
-            //response.json().then((dados)=>{console.log(dados); } );
-        }
-        
-        setEnderecoUsuario(valor){
+           resposta = response.rows[0].elements[0].duration.value;
+           //console.log(response.rows[0].elements[0].duration.value);
+           //console.log(response.rows[0].elements[0].duration.text);          
+           this.setCusto(resposta);
+          }         
+           
+           
+        }); 
+        this.setCusto(resposta);
+            console.log('teste2');
+            console.log(resposta);
+            //this.setCusto(resposta);
+        }     
+                
+        setEnderecoUsuario(valor){                     
             this.setState(
                     (anterior)=>
-                            {
+                            {                                                       
                             anterior.solicitacao.enderecousuario=valor;
-                            this.realizaCalculo(anterior);
+                       
+                                this.realizaCalculo();
                             return anterior;
                             }
                     );
-            
         }
         
         setCusto(valor){
             this.setState(
                     (anterior)=>
-                            {
-                            anterior.solicitacao.custo=valor;
+                            {       
+                       
+                                anterior.solicitacao.custo=valor;
+                           
                             return anterior;
                             }
-                    );
-            
+                    );     
         }
   
         confirmar(){
@@ -106,12 +98,8 @@ export default class SolicitacaoItem extends React.Component {
                         }
                     } else {
                         alert("Preencha todos os campos!");
-                    }
-                        
-            
-            
+                    }  
         }
-        
         
         render(){
             return <Dialog open={this.props.abrir}>

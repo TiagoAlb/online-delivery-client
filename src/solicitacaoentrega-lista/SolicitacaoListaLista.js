@@ -12,7 +12,7 @@ import Table, {
 } from 'material-ui/Table';
 
 
-export default class SolicitacaoLista extends React.Component {
+export default class SolicitacaoListaLista extends React.Component {
 
     setPagina(numero) {
         this.props.mudaPagina(numero);

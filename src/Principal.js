@@ -15,7 +15,8 @@ import TextField from 'material-ui/TextField';
 
 import EntregadorPagina from './entregador/EntregadorPagina';
 import UsuarioPagina from './usuario/UsuarioPagina';
-import SolicitacaoPagina from './solicitaentrega/SolicitacaoPagina';
+import SolicitacaoPagina from './solicitacaoentrega/SolicitacaoPagina';
+import SolicitacaoListaPagina from './solicitacaoentrega-lista/SolicitacaoListaPagina';
 //import PrincipalUsuario from './usuario/PrincipalUsuario';
 
 import {
@@ -80,7 +81,7 @@ class Principal extends React.Component {
             <Typography type="title" color="inherit" noWrap>
               Entregas
             </Typography> 
-            <Button color="contrast" style={{left:'78%'}} href="solicitaentrega">Login</Button>
+            <Button color="contrast" style={{left:'78%'}} href="solicitacaoentrega-lista">Login</Button>
           </Toolbar>
         </AppBar>
         <Drawer 
@@ -97,14 +98,34 @@ class Principal extends React.Component {
             <ListItemIcon>
                 <Icon style={{marginLeft:'auto', marginRight:'auto'}}>motorcycle</Icon>
             </ListItemIcon>
+            <ListItemText primary="Adicionar Entregador" />
         </ListItem>      
         </Link>
          
-        <Link to="usuario"  style={{ textDecoration: 'none' }}>
+    <Link to="usuario"  style={{ textDecoration: 'none' }}>
         <ListItem button>
           <ListItemIcon>
             <Icon style={{marginLeft:'auto', marginRight:'auto'}}>account_circle</Icon>
           </ListItemIcon>
+          <ListItemText primary="Listar Usuarios" />
+        </ListItem>
+        </Link>
+        
+        <Link to="solicitacaoentrega"  style={{ textDecoration: 'none' }}>
+        <ListItem button>
+          <ListItemIcon>
+            <Icon style={{marginLeft:'auto', marginRight:'auto'}}>date_range</Icon>
+          </ListItemIcon>
+          <ListItemText primary="Solicitar Entrega" />
+        </ListItem>
+        </Link>
+        
+        <Link to="solicitacaoentrega-lista"  style={{ textDecoration: 'none' }}>
+        <ListItem button>
+          <ListItemIcon>
+            <Icon style={{marginLeft:'auto', marginRight:'auto'}}>chrome_reader_mode</Icon>
+          </ListItemIcon>
+          <ListItemText primary="Solicitações" />
         </ListItem>
         </Link>
       </List>
@@ -113,7 +134,8 @@ class Principal extends React.Component {
         <main className={classes.content}>
         <Route path="/entregador" component={EntregadorPagina}/>
         <Route path="/usuario" component={UsuarioPagina}/>
-        <Route path="/solicitaentrega" component={SolicitacaoPagina}/>
+        <Route path="/solicitacaoentrega" component={SolicitacaoPagina}/>
+        <Route path="/solicitacaoentrega-lista" component={SolicitacaoListaPagina}/>
         </main>
       </div>
     </div>
