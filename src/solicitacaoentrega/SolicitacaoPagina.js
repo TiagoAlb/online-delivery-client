@@ -11,6 +11,13 @@ import Table, {
   TableRow
 } from 'material-ui/Table';
 
+import Dialog, {
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+} from 'material-ui/Dialog';
+
 const ARC_DE_TRIOMPHE_POSITION = {
   lat: 48.873947,
   lng: 2.295038
@@ -24,25 +31,31 @@ const EIFFEL_TOWER_POSITION = {
 export default class SolicitacaoPagina extends React.Component {
   constructor(props) {
 
-    
-    
     super(props);
     this.state={
                 solicitacao:this.props.solicitacao,
-                value: 'selecione'
+                value: '',
+                endereco:'',
+                custo:'',
+                distancia:'',
+                tempo:''
             };
-            
+            this.enderecoTroca = this.enderecoTroca.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.panToArcDeTriomphe = this.panToArcDeTriomphe.bind(this);
   }
   
-        realizaCalculo(value){
+  enderecoTroca(event){
+      this.setState({endereco: event.target.value});
+      console.log(event.target.value)
+  }
+        realizaCalculo(){
          var resposta;
          var service = new window.google.maps.DistanceMatrixService;
          service.getDistanceMatrix({
           origins: ["Paulo Madureira Coelho, Porto Alegre"],
-          destinations:[],
-          travelMode: [value],
+          destinations:[this.state.endereco],
+          travelMode: [this.state.value],
           unitSystem: window.google.maps.UnitSystem.METRIC,
           avoidHighways: false,
           avoidTolls: false
@@ -52,9 +65,10 @@ export default class SolicitacaoPagina extends React.Component {
             alert('Error was: ' + status);
           } else {
            resposta = response.rows[0].elements[0].duration.value;
-           //console.log(response.rows[0].elements[0].duration.value);
+           this.state.distancia = response.rows[0].elements[0].distance.text;
+           this.state.tempo = response.rows[0].elements[0].duration.text;
            //console.log(response.rows[0].elements[0].duration.text);          
-           this.setCusto(resposta/80);
+           this.state.custo=resposta/80;
           }         
            
            
@@ -75,19 +89,33 @@ export default class SolicitacaoPagina extends React.Component {
        
         handleChange(event) {
             this.setState({value: event.target.value});
-            console.log(this.state.value);
+            if(this.state.value!='selecione'&&this.state.value!=''&&this.state.endereco!=''){
+                this.realizaCalculo();
+            }
                 //this.realizaCalculo(event.target.value);
             
         }
   
         
-        setModoEntrega(valor){
+        setEnderecoUsuario(valor){                     
+            this.setState(
+                    (anterior)=>
+                            {                                                       
+                            anterior.solicitacao.enderecousuario=valor;
+                            
+                            this.realizaCalculo();
+                            return anterior;
+                            }
+                    );
+        }
+        
+        setCusto(valor){
             this.setState(
                     (anterior)=>
                             {       
                        
-                                anterior.solicitacao.modoentrega=valor;
-                           console.log("aqui");
+                                this.state.custo=valor;
+                           
                             return anterior;
                             }
                     );     
@@ -101,12 +129,12 @@ export default class SolicitacaoPagina extends React.Component {
     }
     
     return <div>
-          <button onClick={this.panToArcDeTriomphe}>Go to Arc De Triomphe</button><br/>
-     
-                
-                <TableCell><TextField label="Onde Entregar?"
-                   /></TableCell>
-                
+                <TableCell>
+                <TextField label="Onde Entregar?"
+                  value={this.state.endereco}
+                  onChange={this.enderecoTroca}
+                  />
+                </TableCell>
                 <TableCell>
                     <div id="floating-panel">
                     <select id="mode" value={this.state.value} onChange={this.handleChange}>
@@ -121,19 +149,19 @@ export default class SolicitacaoPagina extends React.Component {
                 </TableCell>
                 <TableCell>
     <TextField label="Distancia"
-               
+                value={this.state.distancia}
+               disabled="true"
+                />
+    </TableCell>
+    <TableCell>
+    <TextField label="Tempo"
+               value={this.state.tempo}
                 disabled="true"
                 />
     </TableCell>
     <TableCell>
     <TextField label="Custo (R$)"
-               
-                disabled="true"
-                />
-    </TableCell>
-    <TableCell>
-    <TextField label="Custo (R$)"
-               
+                value={this.state.custo}
                 disabled="true"
                 />
     </TableCell>
