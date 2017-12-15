@@ -31,7 +31,6 @@ export default class SolicitacaoPagina extends React.Component {
                 solicitacao:this.props.solicitacao,
                 value: 'selecione'
             };
-            this.setEnderecoUsuario = this.setEnderecoUsuario.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.panToArcDeTriomphe = this.panToArcDeTriomphe.bind(this);
   }
@@ -105,8 +104,7 @@ export default class SolicitacaoPagina extends React.Component {
      
                 
                 <TableCell><TextField label="Onde Entregar?"
-                    value={this.state.solicitacao.enderecousuario}
-                onChange={(evento)=>this.setEnderecoUsuario(evento.target.value)}/></TableCell>
+                    /></TableCell>
                 
                 <TableCell>
                     <div id="floating-panel">
@@ -127,7 +125,7 @@ export default class SolicitacaoPagina extends React.Component {
                 />
     </TableCell>
     <TableCell>
-    <TextField label="Custo (R$)"
+    <TextField label="Tempo"
                
                 disabled="true"
                 />

@@ -39,9 +39,9 @@ export default class SolicitacaoListaItem extends React.Component {
          var resposta;
          var service = new window.google.maps.DistanceMatrixService;
          service.getDistanceMatrix({
-          origins: ["Greenwich, England"],
-          destinations: ['Stockholm, Sweden'],
-          travelMode: 'DRIVING',
+          origins: ["Paulo Madureira Coelho, Porto Alegre"],
+          destinations:[this.state.solicitacao.enderecousuario],
+          travelMode: [this.state.solicitacao.modoTransporte],
           unitSystem: window.google.maps.UnitSystem.METRIC,
           avoidHighways: false,
           avoidTolls: false
@@ -53,15 +53,11 @@ export default class SolicitacaoListaItem extends React.Component {
            resposta = response.rows[0].elements[0].duration.value;
            //console.log(response.rows[0].elements[0].duration.value);
            //console.log(response.rows[0].elements[0].duration.text);          
-           this.setCusto(resposta);
+           this.setCusto(resposta/80);
           }         
            
            
         }); 
-        this.setCusto(resposta);
-            console.log('teste2');
-            console.log(resposta);
-            //this.setCusto(resposta);
         }     
                 
         setEnderecoUsuario(valor){                     
@@ -69,8 +65,8 @@ export default class SolicitacaoListaItem extends React.Component {
                     (anterior)=>
                             {                                                       
                             anterior.solicitacao.enderecousuario=valor;
-                       
-                                this.realizaCalculo();
+                            
+                            this.realizaCalculo();
                             return anterior;
                             }
                     );
@@ -115,6 +111,13 @@ export default class SolicitacaoListaItem extends React.Component {
                 disabled="true"
                 />
             </DialogContent>
+             <select id="mode">
+                <option value="DRIVING">Driving</option>
+                <option value="WALKING">Walking</option>
+                <option value="BICYCLING">Bicycling</option>
+                <option value="TRANSIT">Transit</option>
+          
+            </select>
              <DialogActions>
             <Button onClick={()=>{this.props.cancelar()}} color="primary">
               Cancelar

@@ -101,9 +101,7 @@ export default class SolicitacaoListaPagina extends React.Component {
                             );
                     }}
                 solicitacao={this.state.solicitacao} />
-            <Button raised color="primary" onClick={(evento)=>this.novoItem()} >
-        Solicitar Entrega
-      </Button>
+            
             </Paper>
             </Grid>
             </Grid>;
