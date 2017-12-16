@@ -77,6 +77,8 @@ export default class SolicitacaoListaPagina extends React.Component {
                 inserir ={(solicitacao)=>{ 
                     this.solicitacaoListaServico.inserir(solicitacao, 
                             (item)=>{
+                                
+                            console.log("Aqui");
                                 alert("Solicitacao inserida com sucesso!");
                                 this.setState({exibirSolicitacaoListaItem:false});
                                 this.mudarPagina(this.paginaAtual);

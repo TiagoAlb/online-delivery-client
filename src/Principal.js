@@ -81,7 +81,7 @@ class Principal extends React.Component {
             <Typography type="title" color="inherit" noWrap>
               Entregas
             </Typography> 
-            <Button color="contrast" style={{left:'78%'}} href="solicitacaoentrega-lista">Login</Button>
+            <Button color="contrast" style={{left:'78%'}} href="">Login</Button>
           </Toolbar>
         </AppBar>
         <Drawer 
