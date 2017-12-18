@@ -36,7 +36,7 @@ export default class SolicitacaoListaLista extends React.Component {
     botoesSolicitacao(solicitacao) {
         let botoes = [];
         if (this.props.editar) {
-            let botao = <Button raised style={{backgroundColor: '#0097A7', color: 'white', fontWeight: 'bold'}} onClick={(evento) => {
+            let botao = <Button raised style={{backgroundColor: '#0097A7', color: 'white', fontWeight: 'bold', margin: '2px'}} onClick={(evento) => {
                     
                                 solicitacao.status="Aceito";
                                 this.props.editar(solicitacao.id, solicitacao);
@@ -53,7 +53,7 @@ export default class SolicitacaoListaLista extends React.Component {
         
         if (this.props.editar) {
             let botao = 
-                    <Button raised style={{backgroundColor: '#D50000', color: 'white', fontWeight: 'bold'}} onClick={(evento) => {
+                    <Button raised style={{backgroundColor: '#D50000', color: 'white', fontWeight: 'bold', margin: '2px'}} onClick={(evento) => {
                                 
                                 solicitacao.status="Recusado";
                                 this.props.editar(solicitacao.id, solicitacao);
@@ -81,8 +81,9 @@ export default class SolicitacaoListaLista extends React.Component {
 
             return <Table >
     <TableHead>
+    <h1 style={{textAlign: 'center'}}>SOLICITACOES</h1>
         <TableRow>
-            <TableCell>Endereco Entrega</TableCell><TableCell>Distancia</TableCell><TableCell>Tempo</TableCell><TableCell>Custo</TableCell><TableCell>Status</TableCell>
+            <TableCell>Endereco Busca</TableCell><TableCell>Endereco Entrega</TableCell><TableCell>Distancia</TableCell><TableCell>Tempo</TableCell><TableCell>Custo</TableCell><TableCell>Status</TableCell>
         </TableRow>
     </TableHead>
     <TableBody>
@@ -91,7 +92,8 @@ export default class SolicitacaoListaLista extends React.Component {
             
                                 if (solicitacao.status!="Aceito"&&solicitacao.status!="Recusado")
                                 return <TableRow hover="true" key={solicitacao.id}>
-                            <TableCell>{solicitacao.enderecousuario}</TableCell>       
+                            <TableCell>{solicitacao.enderecobusca}</TableCell>
+                            <TableCell>{solicitacao.enderecoentrega}</TableCell>       
                             <TableCell>{solicitacao.distancia}</TableCell>
                             <TableCell>{solicitacao.tempo}</TableCell>
                             <TableCell>{solicitacao.custo}</TableCell> 

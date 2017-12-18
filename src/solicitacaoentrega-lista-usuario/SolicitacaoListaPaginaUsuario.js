@@ -53,7 +53,7 @@ export default class SolicitacaoListaPaginaUsuario extends React.Component {
 
         return  <Grid container  >
             <Grid item sm={0}  md={1} />
-            <Grid item sm={12} md={10} >
+            <Grid item sm={12} md={100} >
             <Paper style={{padding:10}}>
                        
             <ListarSolicitacoes

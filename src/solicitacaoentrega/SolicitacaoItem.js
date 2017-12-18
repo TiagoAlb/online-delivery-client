@@ -43,8 +43,8 @@ export default class SolicitacaoPagina extends React.Component {
         realizaCalculo(){
          var service = new window.google.maps.DistanceMatrixService;
          service.getDistanceMatrix({
-          origins: ["Paulo Madureira Coelho, Porto Alegre"],
-          destinations:[this.state.solicitacao.enderecousuario],
+          origins: [this.state.solicitacao.enderecobusca],
+          destinations:[this.state.solicitacao.enderecoentrega],
           travelMode: [this.state.solicitacao.modoentrega],
           unitSystem: window.google.maps.UnitSystem.METRIC,
           avoidHighways: false,
@@ -86,7 +86,7 @@ export default class SolicitacaoPagina extends React.Component {
                     (anterior)=>
                             {                       
                             anterior.solicitacao.modoentrega=valor;
-                            if(valor!='selecione'&&this.state.solicitacao.enderecousuario!=null){
+                            if(valor!='selecione'&&this.state.solicitacao.enderecobusca!=null&&this.state.solicitacao.enderecoentrega!=null){
                                 this.realizaCalculo();
                             }else if (valor=='selecione'){
                                 this.setDistancia("");
@@ -100,11 +100,22 @@ export default class SolicitacaoPagina extends React.Component {
         }
   
         
-        setEnderecoUsuario(valor){                     
+        setEnderecoBusca(valor){                     
             this.setState(
                     (anterior)=>
                             {                                                       
-                            anterior.solicitacao.enderecousuario=valor;
+                            anterior.solicitacao.enderecobusca=valor;
+                            
+                            return anterior;
+                            }
+                    );
+        }
+        
+        setEnderecoEntrega(valor){                     
+            this.setState(
+                    (anterior)=>
+                            {                                                       
+                            anterior.solicitacao.enderecoentrega=valor;
                             
                             return anterior;
                             }
@@ -160,7 +171,7 @@ export default class SolicitacaoPagina extends React.Component {
         }
         
         confirmar(){
-            if(this.state.solicitacao.enderecousuario&&this.state.solicitacao.modoentrega!='selecione'){
+            if(this.state.solicitacao.enderecobusca&&this.state.solicitacao.enderecoentrega&&this.state.solicitacao.modoentrega!='selecione'){
                     if(this.state.solicitacao.id){
                         //this.state.solicitacao.status="ativo";
                        // console.log(this.state.solicitacao.status);
@@ -168,7 +179,8 @@ export default class SolicitacaoPagina extends React.Component {
                     }
                     else {     
                         this.props.inserir(this.state.solicitacao);
-                        this.setEnderecoUsuario("");
+                        this.setEnderecoBusca("");
+                        this.setEnderecoEntrega("");
                         this.setDistancia("");
                         this.setTempo("");      
                         this.setCusto("");
@@ -188,9 +200,17 @@ export default class SolicitacaoPagina extends React.Component {
     
     return <div>
                 <TableCell>
+                <TextField label="Onde Buscar?(Rua/Cidade e Estado)"
+                  value={this.state.solicitacao.enderecobusca}
+                  onChange={(evento)=>this.setEnderecoBusca(evento.target.value)}
+                  errorText="Preencha este campo"
+                  />
+                </TableCell>
+                
+                <TableCell>
                 <TextField label="Onde Entregar?(Rua/Cidade e Estado)"
-                  value={this.state.solicitacao.enderecousuario}
-                  onChange={(evento)=>this.setEnderecoUsuario(evento.target.value)}
+                  value={this.state.solicitacao.enderecoentrega}
+                  onChange={(evento)=>this.setEnderecoEntrega(evento.target.value)}      
                   />
                 </TableCell>
                 

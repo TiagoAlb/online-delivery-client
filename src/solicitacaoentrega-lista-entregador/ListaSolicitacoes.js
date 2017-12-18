@@ -61,20 +61,24 @@ export default class SolicitacaoListaLista extends React.Component {
         if (!this.props.pagina.content) {
             return <div>Vazio!</div>;
         } else {
-
+            
             return <Table >
+           
     <TableHead>
+    <h1 style={{textAlign: 'center'}}>HISTÓRICO DE SOLICITAÇOES</h1>
         <TableRow>
-            <TableCell>Endereco Entrega</TableCell><TableCell>Distancia</TableCell><TableCell>Tempo</TableCell><TableCell>Custo</TableCell><TableCell>Status</TableCell>
+            <TableCell>Endereco Busca</TableCell><TableCell>Endereco Entrega</TableCell><TableCell>Distancia</TableCell><TableCell>Tempo</TableCell><TableCell>Custo</TableCell><TableCell>Status</TableCell>
         </TableRow>
     </TableHead>
     <TableBody>
     
         {this.props.pagina.content.map((solicitacao) => {
             
+            
                             if (solicitacao.status=="Aceito"||solicitacao.status=="Recusado")
                                 return <TableRow hover="true" key={solicitacao.id}>
-                            <TableCell>{solicitacao.enderecousuario}</TableCell>       
+                            <TableCell>{solicitacao.enderecobusca}</TableCell>     
+                            <TableCell>{solicitacao.enderecoentrega}</TableCell>   
                             <TableCell>{solicitacao.distancia}</TableCell>
                             <TableCell>{solicitacao.tempo}</TableCell>
                             <TableCell>{solicitacao.custo}</TableCell> 
