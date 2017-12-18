@@ -37,7 +37,7 @@ export default class SolicitacaoPagina extends React.Component {
                 solicitacao:this.props.solicitacao,
             };
             
-        this.panToArcDeTriomphe = this.panToArcDeTriomphe.bind(this);
+            this.panToArcDeTriomphe = this.panToArcDeTriomphe.bind(this);
   }
   
         realizaCalculo(){
@@ -57,7 +57,7 @@ export default class SolicitacaoPagina extends React.Component {
            
            this.setDistancia(response.rows[0].elements[0].distance.text);
            this.setTempo(response.rows[0].elements[0].duration.text);      
-           this.setCusto(response.rows[0].elements[0].duration.value/80);
+           this.setCusto(response.rows[0].elements[0].duration.value/80);        
           }         
                 
         }); 
@@ -88,6 +88,10 @@ export default class SolicitacaoPagina extends React.Component {
                             anterior.solicitacao.modoentrega=valor;
                             if(valor!='selecione'&&this.state.solicitacao.enderecousuario!=null){
                                 this.realizaCalculo();
+                            }else if (valor=='selecione'){
+                                this.setDistancia("");
+                                this.setTempo("");      
+                                this.setCusto("");
                             }
                             return anterior;
                             }
@@ -143,13 +147,31 @@ export default class SolicitacaoPagina extends React.Component {
                     );     
         }
         
+        setStatus(valor){
+            this.setState(
+                    (anterior)=>
+                            {       
+                       
+                                anterior.solicitacao.status=valor;
+                           
+                            return anterior;
+                            }
+                    );     
+        }
+        
         confirmar(){
             if(this.state.solicitacao.enderecousuario&&this.state.solicitacao.modoentrega!='selecione'){
                     if(this.state.solicitacao.id){
+                        //this.state.solicitacao.status="ativo";
+                       // console.log(this.state.solicitacao.status);
                         this.props.editar(this.state.solicitacao.id, this.state.solicitacao);
                     }
-                    else {
+                    else {     
                         this.props.inserir(this.state.solicitacao);
+                        this.setEnderecoUsuario("");
+                        this.setDistancia("");
+                        this.setTempo("");      
+                        this.setCusto("");
                         }
                     } else {
                         alert("Preencha todos os campos!");
@@ -166,11 +188,12 @@ export default class SolicitacaoPagina extends React.Component {
     
     return <div>
                 <TableCell>
-                <TextField label="Onde Entregar?"
+                <TextField label="Onde Entregar?(Rua/Cidade e Estado)"
                   value={this.state.solicitacao.enderecousuario}
                   onChange={(evento)=>this.setEnderecoUsuario(evento.target.value)}
                   />
                 </TableCell>
+                
                 <TableCell>
                     <div id="floating-panel">
                     <select id="mode" value={this.state.solicitacao.modoentrega} onChange={(evento)=>this.setModoEntrega(evento.target.value)}>

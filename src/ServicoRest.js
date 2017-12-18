@@ -21,8 +21,7 @@ export default class ServicoRest {
                resposta.json().then(erro);              
            }
                
-        } );
-        
+        } );    
     }
 
     inserir(item, sucesso, erro) {

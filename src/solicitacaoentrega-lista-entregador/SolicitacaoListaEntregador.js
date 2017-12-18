@@ -1,6 +1,8 @@
 import React from "react";
 import Icon from 'material-ui/Icon';
+import Button  from 'material-ui/Button';
 import IconButton from 'material-ui/IconButton';
+
 
 import Table, {
   TableBody,
@@ -34,11 +36,13 @@ export default class SolicitacaoListaLista extends React.Component {
     botoesSolicitacao(solicitacao) {
         let botoes = [];
         if (this.props.editar) {
-            let botao = <IconButton onClick={(evento) => {
-                                this.props.editar(solicitacao);
-            }} style={{color: '#009688'}}>
-        <Icon>create</Icon>
-      </IconButton>
+            let botao = <Button raised style={{backgroundColor: '#0097A7', color: 'white', fontWeight: 'bold'}} onClick={(evento) => {
+                    
+                                solicitacao.status="Aceito";
+                                this.props.editar(solicitacao.id, solicitacao);
+            }} color="secondary">
+        Aceitar
+      </Button>
                             /*
                             <button onClick={(evento) => {
                                 this.props.editar(solicitacao);
@@ -46,14 +50,16 @@ export default class SolicitacaoListaLista extends React.Component {
                 Editar</button>;*/;
                 botoes.push(botao);
         }
-
-        if (this.props.apagar) {
+        
+        if (this.props.editar) {
             let botao = 
-                    <IconButton onClick={(evento) => {
-                                this.props.apagar(solicitacao);
-            }} style={{color: '#616161'}}>
-        <Icon>delete</Icon>
-      </IconButton>;
+                    <Button raised style={{backgroundColor: '#D50000', color: 'white', fontWeight: 'bold'}} onClick={(evento) => {
+                                
+                                solicitacao.status="Recusado";
+                                this.props.editar(solicitacao.id, solicitacao);
+            }} color="secondary">
+        Recusar
+      </Button>
                     /*            
                                 
                                 <button onClick={(evento) => {
@@ -62,6 +68,8 @@ export default class SolicitacaoListaLista extends React.Component {
                 Apagar</button>;*/
                 botoes.push(botao);
         }
+
+        
         return botoes;
     }
 
@@ -74,14 +82,20 @@ export default class SolicitacaoListaLista extends React.Component {
             return <Table >
     <TableHead>
         <TableRow>
-            <TableCell>Endereco Entrega</TableCell><TableCell>Custo</TableCell>
+            <TableCell>Endereco Entrega</TableCell><TableCell>Distancia</TableCell><TableCell>Tempo</TableCell><TableCell>Custo</TableCell><TableCell>Status</TableCell>
         </TableRow>
     </TableHead>
     <TableBody>
+    
         {this.props.pagina.content.map((solicitacao) => {
+            
+                                if (solicitacao.status!="Aceito"&&solicitacao.status!="Recusado")
                                 return <TableRow hover="true" key={solicitacao.id}>
-                            <TableCell>{solicitacao.enderecousuario}</TableCell>                     
-                            <TableCell>{solicitacao.custo}</TableCell>              
+                            <TableCell>{solicitacao.enderecousuario}</TableCell>       
+                            <TableCell>{solicitacao.distancia}</TableCell>
+                            <TableCell>{solicitacao.tempo}</TableCell>
+                            <TableCell>{solicitacao.custo}</TableCell> 
+                            <TableCell>{solicitacao.status}</TableCell>
                             <TableCell>
                                 {this.botoesSolicitacao(solicitacao)}</TableCell>
                         </TableRow>;

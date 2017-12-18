@@ -16,6 +16,7 @@ export default class SolicitacaoPagina extends React.Component {
             exibirSolicitacaoListaItem:false,
             solicitacao:{local:"teste"}
         }
+        this.solicitacaoServico = new SolicitacaoServico();
 
     }
 
@@ -51,11 +52,11 @@ export default class SolicitacaoPagina extends React.Component {
         return  <SolicitacaoItem
         
                     inserir ={(solicitacao)=>{ 
-                    this.solicitacaoListaServico.inserir(solicitacao, 
+                    this.solicitacaoServico.inserir(solicitacao, 
                             (item)=>{
+                                
                                 alert("Solicitacao inserida com sucesso!");
-                                this.setState({exibirSolicitacaoListaItem:false});
-                                this.mudarPagina(this.paginaAtual);
+                                                   
                             },
                             (erro)=>{
                                 console.log("Erro!");
@@ -63,20 +64,7 @@ export default class SolicitacaoPagina extends React.Component {
                                 }
                             );
                     }}
-                editar = {(id,solicitacao)=>{ 
-                    this.solicitacaoListaServico.editar(id, solicitacao, 
-                            (item)=>{
-                                alert("Solicitacao editada com sucesso!");
-                                this.setState({exibirSolicitacaoListaItem:false});
-                                this.mudarPagina(this.paginaAtual);
-                            },
-                            (erro)=>{
-                                console.log("Erro!");
-                                console.log(erro);
-                                }
-                            );
-                    }}
-                
+                          
                 solicitacao={this.state.solicitacao} />
             
         

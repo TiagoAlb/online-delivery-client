@@ -16,7 +16,8 @@ import TextField from 'material-ui/TextField';
 import EntregadorPagina from './entregador/EntregadorPagina';
 import UsuarioPagina from './usuario/UsuarioPagina';
 import SolicitacaoPagina from './solicitacaoentrega/SolicitacaoPagina';
-import SolicitacaoListaPagina from './solicitacaoentrega-lista/SolicitacaoListaPagina';
+import SolicitacaoListaPaginaEntregador from './solicitacaoentrega-lista-entregador/SolicitacaoListaPaginaEntregador';
+import SolicitacaoListaPaginaUsuario from './solicitacaoentrega-lista-usuario/SolicitacaoListaPaginaUsuario';
 //import PrincipalUsuario from './usuario/PrincipalUsuario';
 
 import {
@@ -111,7 +112,7 @@ class Principal extends React.Component {
         </ListItem>
         </Link>
         
-        <Link to="solicitacaoentrega"  style={{ textDecoration: 'none' }}>
+        <Link to=""  style={{ textDecoration: 'none' }}>
         <ListItem button>
           <ListItemIcon>
             <Icon style={{marginLeft:'auto', marginRight:'auto'}}>date_range</Icon>
@@ -120,12 +121,21 @@ class Principal extends React.Component {
         </ListItem>
         </Link>
         
-        <Link to="solicitacaoentrega-lista"  style={{ textDecoration: 'none' }}>
+        <Link to="solicitacaoentrega-lista-entregador"  style={{ textDecoration: 'none' }}>
         <ListItem button>
           <ListItemIcon>
             <Icon style={{marginLeft:'auto', marginRight:'auto'}}>chrome_reader_mode</Icon>
           </ListItemIcon>
-          <ListItemText primary="Solicitações" />
+          <ListItemText primary="Solicitações Entregador" />
+        </ListItem>
+        </Link>
+        
+        <Link to="solicitacaoentrega-lista-usuario"  style={{ textDecoration: 'none' }}>
+        <ListItem button>
+          <ListItemIcon>
+            <Icon style={{marginLeft:'auto', marginRight:'auto'}}>chrome_reader_mode</Icon>
+          </ListItemIcon>
+          <ListItemText primary="Solicitações Usuario" />
         </ListItem>
         </Link>
       </List>
@@ -134,8 +144,9 @@ class Principal extends React.Component {
         <main className={classes.content}>
         <Route path="/entregador" component={EntregadorPagina}/>
         <Route path="/usuario" component={UsuarioPagina}/>
-        <Route path="/solicitacaoentrega" component={SolicitacaoPagina}/>
-        <Route path="/solicitacaoentrega-lista" component={SolicitacaoListaPagina}/>
+        <Route exact path="/" component={SolicitacaoPagina}/>
+        <Route path="/solicitacaoentrega-lista-entregador" component={SolicitacaoListaPaginaEntregador}/>
+        <Route path="/solicitacaoentrega-lista-usuario" component={SolicitacaoListaPaginaUsuario}/>
         </main>
       </div>
     </div>
