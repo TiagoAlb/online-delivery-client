@@ -72,7 +72,6 @@ export default class SolicitacaoListaLista extends React.Component {
     
         {this.props.pagina.content.map((solicitacao) => {
             
-                            if (solicitacao.status=="Aceito")
                                 return <TableRow hover="true" key={solicitacao.id}>
                             <TableCell>{solicitacao.enderecousuario}</TableCell>       
                             <TableCell>{solicitacao.distancia}</TableCell>
