@@ -87,7 +87,7 @@ class Principal extends React.Component {
             <Typography type="title" color="inherit" noWrap>
               Entregas
             </Typography>           
-            <Button color="contrast" style={{left:'78%', visibility:this.state.logado?"":"hidden"}} href="login">Login</Button>
+            <Button color="contrast" style={{left:'78%', visibility:!this.state.logado?"hidden":""}} href="login">Login</Button>
            
           </Toolbar>
         </AppBar>
