@@ -23,15 +23,25 @@ class ServicoLogin  {
                resposta.json().then((dados)=>{this.dados=dados; sucesso(dados);}) 
                
            } else {
-               resposta.json().then(erro);
+                fetch(`api/usuarios/login`,{
+             headers: new Headers({
+                'Authorization': 'Basic ' + this.getAuthorization()
+            }),
+            method:"GET"
+        }
+        ).then((resposta)=>{
+           if(resposta.ok) {
+               resposta.json().then((dados)=>{this.dados=dados; sucesso(dados);}) 
+               
+           } else {
+                resposta.json().then(erro);
            }
                
         } ).catch(erro);
-        
-
-        
-        
-        
+           }
+               
+        } ).catch(erro);
+         
     }
     
     getAuthorization() {
@@ -50,6 +60,6 @@ class ServicoLogin  {
 
 let servicoLogin = new ServicoLogin();
 
-//servicoLogin.login("admin","1234");
+servicoLogin.login("admin","1234");
 
 export default servicoLogin;
