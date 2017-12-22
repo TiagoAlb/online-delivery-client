@@ -73,10 +73,6 @@ class Principal extends React.Component {
 
     handleClose = () => this.setState({open: false});
     
-    botaoLoginOpen = () => this.setState({open: !this.state.open});
-
-    botaoLoginClose = () => this.setState({open: false});
-    
     estadoBotao(){
         if(this.state.logado){
             return true;
