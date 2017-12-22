@@ -77,7 +77,7 @@ export default class UsuarioItem extends React.Component {
             this.setState(
                     (anterior)=>
                             {
-                            anterior.usuario.senha=valor;
+                            anterior.usuario.novaSenha=valor;
                             return anterior;
                             }
                     );
@@ -89,7 +89,7 @@ export default class UsuarioItem extends React.Component {
                   this.state.usuario.cpf&&
                       this.state.usuario.email&&
                         this.state.usuario.login&&
-                          this.state.usuario.senha){
+                          this.state.usuario.novaSenha){
                     if(this.state.usuario.id){
                         this.props.editar(this.state.usuario.id, this.state.usuario);
                     }

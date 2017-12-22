@@ -94,6 +94,28 @@ export default class EntregadorItem extends React.Component {
                     );
             
         }
+        
+        setLogin(valor){
+            this.setState(
+                    (anterior)=>
+                            {
+                            anterior.entregador.login=valor;
+                            return anterior;
+                            }
+                    );
+            
+        }
+        
+        setSenha(valor){
+            this.setState(
+                    (anterior)=>
+                            {
+                            anterior.entregador.novaSenha=valor;
+                            return anterior;
+                            }
+                    );
+            
+        }
   
         confirmar(){
             if(this.state.entregador.nome&&
@@ -101,7 +123,9 @@ export default class EntregadorItem extends React.Component {
                     this.state.entregador.rg&&
                       this.state.entregador.email&&
                         this.state.entregador.cnh&&
-                          this.state.entregador.crlv){
+                          this.state.entregador.crlv&&
+                            this.state.entregador.login&&
+                                this.state.entregador.novaSenha){
                     if(this.state.entregador.id){
                         this.props.editar(this.state.entregador.id, this.state.entregador);
                     }
@@ -140,6 +164,14 @@ export default class EntregadorItem extends React.Component {
             <TextField label="CRLV"
                 value={this.state.entregador.crlv}
                 onChange={(evento)=>this.setCrlv(evento.target.value)}  /><br/><br/>
+            <TextField label="Login"
+                value={this.state.entregador.login}
+                onChange={(evento)=>this.setLogin(evento.target.value)}  /><br/><br/>
+            <TextField label="Senha"
+                value={this.state.entregador.novaSenha}
+                onChange={(evento)=>this.setSenha(evento.target.value)}  
+                type="password"/><br/><br/>
+            
             </DialogContent>
             
              <DialogActions>
