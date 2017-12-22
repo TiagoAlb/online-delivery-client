@@ -58,15 +58,15 @@ export default class Login  extends Component  {
 
                     
         <Grid item xs={12} sm={8} md={4} lg={3} alignItems="center" >
-                <Paper style={{padding:"15px"}}>
+                <Paper >
 
-                    <AppBar position="static" color="primary">
+                    <AppBar position="static" style={{backgroundColor: '#37474F'}}>
         <Toolbar>
         Login
         </Toolbar>
       </AppBar>
 
-     <form onSubmit={(event)=>{event.preventDefault(); this.login()}}>
+     <form style={{padding:"15px"}} onSubmit={(event)=>{event.preventDefault(); this.login()}}>
             <TextField
                 value={this.state.login.usuario}
                 onChange={(e)=>this.setValor("usuario", e.target.value)}
@@ -96,9 +96,9 @@ export default class Login  extends Component  {
                     
                 <Typography color="error">{this.state.avisoLogin} <br/> </Typography></div>
                 <br/>
-                <Button type="submit" style={{width:"100%"}} raised color="primary">Confirmar</Button>
+                <Button type="submit" style={{width:"100%", backgroundColor: '#616161', color: 'white'}} raised >Confirmar</Button>
                 <br/><br/>
-                <Button style={{width:"100%"}} raised color="accent" href="usuario">Cadastrar</Button>
+                <Button style={{width:"100%", backgroundColor:"#20B2AA"}} raised color="accent" href="usuario">Cadastrar</Button>
                     </form>
                 </Paper>
                 </Grid></Grid>
