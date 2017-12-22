@@ -18,6 +18,8 @@ import UsuarioPagina from './usuario/UsuarioPagina';
 import SolicitacaoPagina from './solicitacaoentrega/SolicitacaoPagina';
 import SolicitacaoListaPaginaEntregador from './solicitacaoentrega-lista-entregador/SolicitacaoListaPaginaEntregador';
 import SolicitacaoListaPaginaUsuario from './solicitacaoentrega-lista-usuario/SolicitacaoListaPaginaUsuario';
+import Login from './login/Login';
+import servicoLogin from "./login/ServicoLogin";
 //import PrincipalUsuario from './usuario/PrincipalUsuario';
 
 import {
@@ -60,13 +62,26 @@ class Principal extends React.Component {
     
     constructor(props) {
         super(props);
-        this.state = {open: false};
+        this.state = {
+            open: false,
+            logado:servicoLogin.logado(),
+            botaoLogin: false
+        };
     }
 
     handleToggle = () => this.setState({open: !this.state.open});
 
     handleClose = () => this.setState({open: false});
     
+    botaoLoginOpen = () => this.setState({open: !this.state.open});
+
+    botaoLoginClose = () => this.setState({open: false});
+    
+    estadoBotao(){
+        if(this.state.logado){
+            return true;
+        }else return false;
+    }
   
   render(){
       
@@ -81,8 +96,9 @@ class Principal extends React.Component {
           <IconButton className={classes.menuButton} color="contrast" aria-label="Menu" onClick={this.handleToggle}>menu</IconButton>
             <Typography type="title" color="inherit" noWrap>
               Entregas
-            </Typography> 
-            <Button color="contrast" style={{left:'78%'}} href="">Login</Button>
+            </Typography>           
+            <Button color="contrast" style={{left:'78%', visibility:this.state.logado?"hidden":""}} href="login">Login</Button>
+           
           </Toolbar>
         </AppBar>
         <Drawer 
@@ -108,7 +124,7 @@ class Principal extends React.Component {
           <ListItemIcon>
             <Icon style={{marginLeft:'auto', marginRight:'auto'}}>account_circle</Icon>
           </ListItemIcon>
-          <ListItemText primary="Listar Usuarios" />
+          <ListItemText primary="Cadastrar Usuario" />
         </ListItem>
         </Link>
         
@@ -147,6 +163,7 @@ class Principal extends React.Component {
         <Route exact path="/" component={SolicitacaoPagina}/>
         <Route path="/solicitacaoentrega-lista-entregador" component={SolicitacaoListaPaginaEntregador}/>
         <Route path="/solicitacaoentrega-lista-usuario" component={SolicitacaoListaPaginaUsuario}/>
+        <Route path="/login" component={Login}/>
         </main>
       </div>
     </div>

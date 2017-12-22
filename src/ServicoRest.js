@@ -3,6 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import base64 from "base-64/base64.js";
+import servicoLogin from "./login/ServicoLogin";
 
 export default class ServicoRest {
 
@@ -12,6 +14,9 @@ export default class ServicoRest {
 
     apagar(id, sucesso, erro) {
          fetch(`${this.url}/${id}`,{
+             headers: new Headers({
+                'Authorization': 'Basic ' + servicoLogin.getAuthorization()
+            }),
             method:"DELETE"
         }
         ).then((resposta)=>{
@@ -21,7 +26,8 @@ export default class ServicoRest {
                resposta.json().then(erro);              
            }
                
-        } );    
+        } );
+        
     }
 
     inserir(item, sucesso, erro) {
@@ -29,6 +35,7 @@ export default class ServicoRest {
         fetch(this.url, {
             method: "POST",
             headers: new Headers({
+                'Authorization': 'Basic ' + servicoLogin.getAuthorization(),
                 'Content-Type': 'application/json'
             }),
             body: JSON.stringify(item)
@@ -49,6 +56,7 @@ export default class ServicoRest {
         fetch(`${this.url}/${id}`, {
             method: "PUT",
             headers: new Headers({
+                'Authorization': 'Basic ' + servicoLogin.getAuthorization(),
                 'Content-Type': 'application/json'
             }),
             body: JSON.stringify(item)
@@ -95,6 +103,10 @@ export default class ServicoRest {
         };
 
         fetch(this.url + "?pagina=" + pagina, {
+                        headers: new Headers({
+                'Authorization': 'Basic ' + servicoLogin.getAuthorization()
+              
+            }),
             method: "GET"
         }).then(trataFetch);
 

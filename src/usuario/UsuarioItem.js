@@ -61,11 +61,35 @@ export default class UsuarioItem extends React.Component {
                     );
             
         }
+        
+        setLogin(valor){
+            this.setState(
+                    (anterior)=>
+                            {
+                            anterior.usuario.login=valor;
+                            return anterior;
+                            }
+                    );
+            
+        }
+        
+        setSenha(valor){
+            this.setState(
+                    (anterior)=>
+                            {
+                            anterior.usuario.senha=valor;
+                            return anterior;
+                            }
+                    );
+            
+        }
   
         confirmar(){
             if(this.state.usuario.nome&&
                   this.state.usuario.cpf&&
-                      this.state.usuario.email){
+                      this.state.usuario.email&&
+                        this.state.usuario.login&&
+                          this.state.usuario.senha){
                     if(this.state.usuario.id){
                         this.props.editar(this.state.usuario.id, this.state.usuario);
                     }
@@ -92,7 +116,14 @@ export default class UsuarioItem extends React.Component {
                 onChange={(evento)=>this.setCpf(evento.target.value)}  /><br/><br/>
             <TextField label="Email"
                 value={this.state.usuario.email}
-                onChange={(evento)=>this.setEmail(evento.target.value)}  />
+                onChange={(evento)=>this.setEmail(evento.target.value)}  /><br/><br/>
+            <TextField label="Login"
+                value={this.state.usuario.login}
+                onChange={(evento)=>this.setLogin(evento.target.value)}  /><br/><br/>
+            <TextField label="Senha"
+                value={this.state.usuario.senha}
+                onChange={(evento)=>this.setSenha(evento.target.value)} 
+                type="password"/>
             </DialogContent>
             
              <DialogActions>

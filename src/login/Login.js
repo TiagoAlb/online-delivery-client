@@ -12,6 +12,7 @@ import { Redirect } from 'react-router';
 import Switch from 'material-ui/Switch';
 import { FormControlLabel, FormGroup } from 'material-ui/Form';
 import servicoLogin from "./ServicoLogin";
+import UsuarioPagina from "../usuario/UsuarioPagina";
 
 export default class Login  extends Component  {
     constructor(props) {
@@ -51,7 +52,7 @@ export default class Login  extends Component  {
 
     render() {
         return (
-        <div style={{boxSizing:"border-box", width:"99vw", height:"99vh"}}>
+<div style={{boxSizing:"border-box", width:"99vw", height:"99vh"}}>
                 <Grid container  alignItems="center"
             justify="center" style={{height:"100%"}}>
 
@@ -97,7 +98,7 @@ export default class Login  extends Component  {
                 <br/>
                 <Button type="submit" style={{width:"100%"}} raised color="primary">Confirmar</Button>
                 <br/><br/>
-                <Button style={{width:"100%"}} raised color="accent">Cadastrar</Button>
+                <Button style={{width:"100%"}} raised color="accent" href="usuario">Cadastrar</Button>
                     </form>
                 </Paper>
                 </Grid></Grid>

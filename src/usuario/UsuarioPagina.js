@@ -63,20 +63,7 @@ export default class UsuarioPagina extends React.Component {
             <Grid item sm={12} md={100} >
             <Paper style={{padding:10}}>
             
-            <UsuarioLista
-            apagar={(usuario) => {
-                this.usuarioServico.apagar(usuario.id,
-                ()=>{
-                    alert("Apagado com sucesso!!!");
-                    this.mudarPagina(this.paginaAtual);
-                    
-                },
-                (erro)=>console.log(erro));
-                }}
-            editar={(usuario) => {this.setState({exibirUsuarioItem:true, usuario:usuario});}  }
-            mudaPagina={(numero) => this.mudarPagina(numero)}
-            pagina={this.state.pagina} 
-            />
+            
             <UsuarioItem 
                 cancelar={()=>{this.setState({exibirUsuarioItem:false});}}
                 abrir={this.state.exibirUsuarioItem}
