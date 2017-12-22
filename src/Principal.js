@@ -72,13 +72,7 @@ class Principal extends React.Component {
     handleToggle = () => this.setState({open: !this.state.open});
 
     handleClose = () => this.setState({open: false});
-    
-    estadoBotao(){
-        if(this.state.logado){
-            return true;
-        }else return false;
-    }
-  
+
   render(){
       
   const { classes } = this.props;
