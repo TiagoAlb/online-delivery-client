@@ -3,7 +3,6 @@ import Icon from 'material-ui/Icon';
 import Button  from 'material-ui/Button';
 import IconButton from 'material-ui/IconButton';
 
-
 import Table, {
   TableBody,
   TableCell,
@@ -43,6 +42,7 @@ export default class SolicitacaoListaLista extends React.Component {
             }} color="secondary">
         Aceitar
       </Button>
+     
                             /*
                             <button onClick={(evento) => {
                                 this.props.editar(solicitacao);

@@ -54,7 +54,6 @@ class ServicoLogin  {
     } else {
         return false;
     }
-   
     }
 }
 

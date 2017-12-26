@@ -49,6 +49,13 @@ export default class Login  extends Component  {
             );
         
     }
+    
+    showLock(){
+    this.refs.lock1.showLock(function(err, profile){
+      if(err) console.log(err);
+      console.log(profile);
+    });
+}
 
     render() {
         return (
@@ -58,15 +65,15 @@ export default class Login  extends Component  {
 
                     
         <Grid item xs={12} sm={8} md={4} lg={3} alignItems="center" >
-                <Paper >
+                <Paper style={{padding:"15px"}}>
 
-                    <AppBar position="static" style={{backgroundColor: '#37474F'}}>
+                    <AppBar position="static" color="primary">
         <Toolbar>
         Login
         </Toolbar>
       </AppBar>
 
-     <form style={{padding:"15px"}} onSubmit={(event)=>{event.preventDefault(); this.login()}}>
+     <form onSubmit={(event)=>{event.preventDefault(); this.login()}}>
             <TextField
                 value={this.state.login.usuario}
                 onChange={(e)=>this.setValor("usuario", e.target.value)}
@@ -96,9 +103,9 @@ export default class Login  extends Component  {
                     
                 <Typography color="error">{this.state.avisoLogin} <br/> </Typography></div>
                 <br/>
-                <Button type="submit" style={{width:"100%", backgroundColor: '#616161', color: 'white'}} raised >Confirmar</Button>
+                <Button type="submit" style={{width:"100%"}} raised color="primary">Confirmar</Button>
                 <br/><br/>
-                <Button style={{width:"100%", backgroundColor:"#20B2AA"}} raised color="accent" href="usuario">Cadastrar</Button>
+                <Button style={{width:"100%"}} raised color="accent">Cadastrar</Button>
                     </form>
                 </Paper>
                 </Grid></Grid>
